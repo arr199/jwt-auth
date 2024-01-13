@@ -5,7 +5,6 @@ import * as z from "zod"
 import jwt from "jsonwebtoken"
 import cookieParser from "cookie-parser"
 
-
 dotenv.config()
 const app = express()
 const PORT = process.env.PORT ?? 3200
@@ -50,11 +49,9 @@ app.get("/secret" , (req , res) => {
 
 })
 
-
 app.listen(PORT , () => {
     console.log(`Server running at http://localhost:${PORT}`)
 })
-
 
 const userSchema = z.object({
     name : z.string().transform(e => e.replace(/\s+/g, "")).pipe(z.string().min(1 , { message : "Empty Credentials" }).regex(/[a-z,A-Z]+$/g , { message : "only letters please" }) ), 
